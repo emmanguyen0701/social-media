@@ -20,8 +20,10 @@ constantly==15.1.0
 cryptography==36.0.1
 daphne==3.0.2
 Deprecated==1.2.13
+dj-database-url==0.5.0
 Django==3.0.3
 django-core==1.4.1
+django-heroku==0.3.1
 djangorestframework==3.11.1
 factory-boy==3.2.1
 Faker==9.8.3
@@ -55,5 +57,6 @@ uritemplate==4.1.1
 urllib3==1.26.7
 vine==5.0.0
 wcwidth==0.2.5
+whitenoise==6.2.0
 wrapt==1.13.3
 zope.interface==5.4.0

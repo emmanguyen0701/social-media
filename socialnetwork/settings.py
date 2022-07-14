@@ -139,4 +139,5 @@ CHANNEL_LAYERS = {
             'hosts': [('127.0.0.1', 6379)]
         }
     }
-}
+}import django_heroku
+django_heroku.settings(locals())
