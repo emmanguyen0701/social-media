@@ -140,5 +140,8 @@ CHANNEL_LAYERS = {
         }
     }
 }
+
+CELERY_BROKER_URL = 'redis://:pa7610f9aaa770e797ff9cdb4666ba63795759e917135f6c00ceb4a14b64ba5d4@ec2-3-218-215-107.compute-1.amazonaws.com:9380'
+
 import django_heroku
 django_heroku.settings(locals())
