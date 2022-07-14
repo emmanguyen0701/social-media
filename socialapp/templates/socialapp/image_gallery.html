@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialapp/image_gallery.css' %}" >
+<div id="image-gallery-container">
+    <h3>Upload Images</h3>
+    <form class="image-form" action="/api/image" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Image Name:</label>
+        <input type="text" name="name">
+        <br/><br/>
+        <label for="image">Upload Image:</label>
+        <input type="file" name="image" accept="image/*">
+        <br/><br/>
+        <input type="hidden" name="profile_id" value="{{ profile_id}}">
+        <input type="submit" value="Upload">
+    </form>
+    <h3 id="gallery-title">Image Gallery</h3>
+    <div class="image-container">
+    </div>
+    {{ profile_id|json_script:"profile_id" }}
+</div>
+<script src="/static/js/index.js">
+</script>
+
+{% endblock %}

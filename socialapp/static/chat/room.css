@@ -1,0 +1,31 @@
+ul li {
+    list-style: none;
+}
+
+img {
+    border-radius: 20px;
+}
+
+.sent, .replies {
+    display: flex;
+    align-items: baseline;
+}
+
+.sent p, .replies p{
+    margin-left: 8px;
+}
+
+.replies {
+    flex-direction: row-reverse;
+}
+
+input[type='text'] {
+    height: 28px;
+    padding-left: 18px;
+    margin-bottom: 10px;
+}
+
+input[type='submit'] {
+    width: 60px;
+    height: 26px;
+}

@@ -1,0 +1,51 @@
+.profile {
+    width: 90%;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-container {
+    display: flex;
+    width: 175px;
+    justify-content: space-around;
+}
+
+.btn-container form button {
+    cursor: pointer;
+    padding: 4px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+#chat-btn {
+    width: 50px
+}
+
+#posts {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.post-container {
+    margin-top: 8px;
+}
+
+#follow-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+}
+
+#follow-container h4 {
+    margin-bottom: 10px;
+}
+
+#follow-container ol li {
+    margin-top: 7px;
+}

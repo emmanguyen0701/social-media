@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'socialapp/profile-list.css' %}">
+<h3>Search Profiles</h3>
+<form action="{% url 'socialapp:profile_list' %}" method="GET">
+    <input type="text" name="profile" value="{{ request.GET.profile }}">
+    <input type="submit" value="Search">
+</form>
+
+<h3>Results</h3>
+{% for profile in profiles %}
+    <div class="profile_container">
+        <p>{{ profile.user.username }}</p>
+        <a href="/profile_detail/{{ profile.id }} ">
+            @{{ profile.user.username|lower }}
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock%}

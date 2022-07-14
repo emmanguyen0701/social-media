@@ -1,0 +1,15 @@
+h3 {
+    margin-bottom: 15px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.profile_container {
+    margin-bottom: 8px;
+}
+.profile_container p {
+    display: inline;
+
+}

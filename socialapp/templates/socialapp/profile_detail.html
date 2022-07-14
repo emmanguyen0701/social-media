@@ -1,0 +1,60 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'socialapp/detail.css' %}">
+    <div class="profile">
+        <div class="header-container">
+            <h3>{{ profile.user.username|upper }}</h3>
+            <div class="btn-container">
+                <form action="" method="POST" enctype="application/x-www-form-urlencoded">
+                    {% csrf_token %}
+                    {% if profile in user.profile.follows.all %}
+                        <button type="submit" name="followBtn" value="follow" disabled>Follow</button>
+                        <button type="submit" name="followBtn" value="unfollow">Unfollow</button>
+                    {% else %}
+                        <button type="submit" name="followBtn" value="follow">Follow</button>
+                        <button type="submit" name="followBtn" value="unfollow" disabled>Unfollow</button>
+                    {% endif %}
+                </form>
+                {% if user.username != profile.user.username %}
+                    <button id="chat-btn"><a href="/chat/lobby">Chat</a></button>
+                {% endif %}
+            </div> 
+        </div>
+        
+        <h3 id="posts">Posts:</h3>
+        <div class="posts">
+            {% for post in profile.user.posts.all %}
+            <div class="post-container">
+                {{ post.body }} - 
+                <span>
+                    created at: {{ post.created_at }}
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="follow-container">
+            <div id="following-list">
+                <h3>Following:</h3>
+                <ol>
+                    {% for following in profile.follows.all %}
+                        <li>{{ following.user.username }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div id="followed-list">
+                <h3>Followed by:</h3>
+                <ol>
+                    {% for followed in profile.followed_by.all %}
+                        <li>{{ followed.user.username }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3>
+        <a href="/profile_detail/{{ profile.id }}/image_gallery">View Image Gallery</a>
+    </h3>
+{% endblock %}

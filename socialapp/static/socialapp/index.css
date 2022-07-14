@@ -1,0 +1,31 @@
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#profile-btn a button {
+    cursor: pointer;
+    margin-left: 4px;
+    padding: 4px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.post {
+    margin-top: 10px;
+}
+
+.post-form {
+    margin-top: 20px;
+}
+
+.post-form form textarea {
+    padding-left: 15px;
+    padding-top: 8px;
+}
+
+.post-form button {
+    margin-top: 16px;
+    width: 60px;
+}

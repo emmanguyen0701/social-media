@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+
+{% block content %}
+    <h2>What chat romm would you like to enter?</h2>
+    <input type="text" id="room-name-input" size="100">
+    <br>
+    <input type="button" id="room-name-submit" value="Enter">
+    <script>
+        const input = document.querySelector('#room-name-input')
+        const submitBtn = document.querySelector('#room-name-submit')
+        input.focus()
+        input.onkeyup = function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click()
+            }
+        }
+        submitBtn.onclick = function(e) {
+            const chatroom = input.value
+            window.location.pathname = '/chat/' + chatroom + '/' 
+        }
+    </script>
+{% endblock %}

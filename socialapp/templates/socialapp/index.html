@@ -1,0 +1,30 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'socialapp/index.css' %}">
+    <div class="content-header">
+        <h4>Logged in User: {{ user.username }}</h4>
+        <div id='profile-btn'>
+            <a href="{% url 'socialapp:profile_list' %}">
+                <button>All Profiles</button>
+            </a>
+            <a href="{% url 'socialapp:profile_detail' request.user.profile.id %}">
+                <button>My Profile</button>
+            </a>
+        </div>
+    </div>
+    
+    {% for post in followed_posts %}
+        <p class="post">{{ post.body }} - created at: {{ post.created_at }} - by {{ post.user.username }}</p>
+    {% endfor %}
+
+    <div class="post-form">
+        <h4>POST FORM</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Post</button>
+        </form>
+    </div>
+{% endblock %}

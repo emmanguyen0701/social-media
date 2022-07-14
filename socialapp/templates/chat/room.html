@@ -1,0 +1,81 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'chat/room.css' %}">
+    <ul id="chat-log">
+        <li class="sent">
+            <img src="/images/profile-pic.jpeg" alt="profile-pic" width="40" height="40">
+            <p>Hey, how are you?</p>
+        </li>
+        <li class="replies">
+            <img src="/images/profile-pic.jpeg" alt="profile-pic" width="40" height="40">
+            <p>I'm fine thank you.</p>
+        </li>
+    </ul>
+    <br>
+    <input type="text" id="chat-message-input" size="100"><br>
+    <input type="submit" id="chat-message-submit" value="Send">
+    {{ room_name|json_script:"room-name" }}
+    <script>
+        const roomName = JSON.parse(document.querySelector('#room-name').textContent)
+        const username = {{ username }}
+        const chatSocket = new WebSocket(
+            'ws://' 
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        )
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data)
+            document.querySelector('#chat-log').value += (data.data.content + '\n')
+            createMessage(data)
+        }
+
+        chatSocket.onclose = function(e) {
+            console.log("Chat socket closed unexpectedly.")
+        }
+
+        const msgInput = document.querySelector('#chat-message-input')
+        const msgSubmit = document.querySelector('#chat-message-submit')
+
+        msgInput.focus()
+        msgInput.onkeyup = function(e) {
+            if (e.key === 'Enter') {
+                msgSubmit.click()
+            }
+        }
+
+        msgSubmit.onclick = function(e) {
+            const message = document.querySelector('#chat-message-input').value
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'from': username,
+            }))
+            document.querySelector('#chat-message-input').value = ''
+        }
+
+        function createMessage(data) {
+            let author = data.data.author
+            let msgListTag = document.createElement('li')
+            let imgTag = document.createElement('img')
+            let pTag = document.createElement('p')
+            pTag.textContent = data.data.content
+            imgTag.src = '/images/profile-pic.jpeg'
+            imgTag.alt = 'profile-pic'
+            imgTag.width = 40
+            imgTag.height = 40
+            if (author === username) {
+                msgListTag.className = 'replies'
+            } else {
+                msgListTag.className = 'sent'
+            }
+            msgListTag.appendChild(imgTag)
+            msgListTag.appendChild(pTag)
+            document.querySelector('#chat-log').appendChild(msgListTag)
+        }
+    </script>
+
+{% endblock %}
