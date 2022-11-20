@@ -1,6 +1,6 @@
 # Social Media Application
 
-An online social media application with user accounts, profile search, real-time communication and image uploads - built using Django, Redis, Celery and SQLite.
+An online social media application with user accounts, profile search, real-time communication and image uploads using Django, Redis, Celery and SQLite.
 
 ![SocialMedia](./images/social-network.png)
 
